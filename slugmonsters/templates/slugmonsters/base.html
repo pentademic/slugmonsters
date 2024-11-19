@@ -1,0 +1,138 @@
+{% load static %}
+<html>
+    <head>
+        <title class="titre-principal">slugmonsters</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/slugmonsters.css' %}">
+        <style>
+            .audio-container {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: rgba(0,0,0,0.7);
+                border-radius: 10px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                z-index: 1000;
+            }
+            .audio-controls button {
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+                margin: 0 10px;
+            }
+            #volumeSlider {
+                width: 100px;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body background="https://preview.redd.it/v4p66nm702c81.jpg?width=1366&format=pjpg&auto=webp&s=d12158d40a1beca7711a129dbc263040e0cf4e0c" class="full-page-image">
+        <div class="page-header">
+            <h1><a href="/">Slugmonsters</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Lecteur audio persistant -->
+        <div class="audio-container">
+            <audio id="backgroundMusic">
+                <source src="{% static 'css/SlugTerra.mp3' %}" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'audio.
+            </audio>
+            <div class="audio-controls">
+                <button id="playPauseBtn">▶️ Lecture</button>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.3">
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const audio = document.getElementById('backgroundMusic');
+                const playPauseBtn = document.getElementById('playPauseBtn');
+                const volumeSlider = document.getElementById('volumeSlider');
+
+                // Configuration initiale
+                audio.volume = 0.3;
+                audio.loop = true;
+
+                // Récupération de l'état audio depuis le localStorage
+                const savedVolume = localStorage.getItem('audioVolume');
+                const savedCurrentTime = localStorage.getItem('audioCurrentTime');
+                const savedIsPlaying = localStorage.getItem('audioIsPlaying');
+
+                if (savedVolume) {
+                    audio.volume = parseFloat(savedVolume);
+                    volumeSlider.value = savedVolume;
+                }
+
+                if (savedCurrentTime) {
+                    audio.currentTime = parseFloat(savedCurrentTime);
+                }
+
+                // Fonction pour sauvegarder l'état audio
+                function saveAudioState() {
+                    localStorage.setItem('audioVolume', audio.volume);
+                    localStorage.setItem('audioCurrentTime', audio.currentTime);
+                    localStorage.setItem('audioIsPlaying', !audio.paused);
+                }
+
+                // Fonction pour démarrer la musique
+                function startMusic() {
+                    const playPromise = audio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            playPauseBtn.textContent = '⏸️ Pause';
+                            saveAudioState();
+                        }).catch(error => {
+                            console.log('Lecture automatique bloquée', error);
+                            playPauseBtn.textContent = '▶️ Lecture';
+                        });
+                    }
+                }
+
+                // Démarrage initial de la musique si elle était en cours de lecture
+                if (savedIsPlaying === 'true') {
+                    startMusic();
+                }
+
+                // Gestion du bouton play/pause
+                playPauseBtn.addEventListener('click', () => {
+                    if (audio.paused) {
+                        startMusic();
+                    } else {
+                        audio.pause();
+                        playPauseBtn.textContent = '▶️ Lecture';
+                        saveAudioState();
+                    }
+                });
+
+                // Contrôle du volume
+                volumeSlider.addEventListener('input', () => {
+                    audio.volume = volumeSlider.value;
+                    saveAudioState();
+                });
+
+                // Sauvegarde de l'état audio avant de quitter la page
+                window.addEventListener('beforeunload', saveAudioState);
+
+                // Écouteur pour les interactions utilisateur
+                document.addEventListener('click', () => {
+                    if (audio.paused) {
+                        startMusic();
+                    }
+                }, { once: true });
+            });
+        </script>
+    </body>
+</html>

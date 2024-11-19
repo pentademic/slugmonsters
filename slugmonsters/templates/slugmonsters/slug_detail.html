@@ -1,0 +1,86 @@
+{% extends 'slugmonsters/base.html' %}
+
+{% load static %}
+{% block content %}
+<section id="about-section" class="pt-5 pb-5">
+    {% if message %}
+    <div class="message">
+        <div class='texte-message'>{{message}}</div> 
+    </div>
+    <div class='back'><a href="{% url 'slug_list' %}">Back</a></div>
+    {% else %}
+    <h1>SLUG :</h1>
+    <div class="container">
+        <div class="row">
+            <div id="content2">
+                <div id="tableau">
+                    <div>
+                        <div>
+                            <h1>{{slug.id_slug}}:</h1>
+                        </div>
+                        <p class="white">
+                            {{slug.id_slug}} est un {{slug.espece}} de type {{slug.type}}
+                        </p>
+                        <p class="white">
+                            Il est {{slug.etat}} et se situe au niveau {{slug.lieu}}.
+                        </p>
+                        <div>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="tableau">
+                    <figure class="potoaboutwrap">
+                        <img src={{slug.photo}} width="150" height="150">
+                    </figure>
+                </div>
+                <div id="tableau">
+                    <div class="changement">   
+                        <form method="POST" class="post-form">{% csrf_token %}
+                            <p id="change"> Changer : </p>  <form method="post">
+                                <ul class="my-ul-class">
+                                    {{ form.as_ul }}
+                                </ul>
+                            <button type="submit" class="btn btn-outline-light" id="valider">Valider</button>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    
+    {% endif %}
+    <h1>Equipements</h1>
+    <div id="content3">
+       
+        {% for equip in equipements %}
+            <div id="tableau">
+            <div class="slug" id="slug">
+                <div class="photo">
+                    <img src={{equip.photo}} width="150" height="150">
+                </div>
+            <h3><a href="{% url 'equipement_detail' id_equip=equip.id_equip %}">{{equip.id_equip}}</a></h3>
+            {% if equip.disponibilite == 'libre' %}
+            <div>              
+                <p> Disponibilité : <span id="dispo">{{ equip.disponibilite }}</span></p>
+            </div>
+            {% else %}
+            <div>              
+                <p> Disponibilité : <span id="pasdispo">{{ equip.disponibilite }}</span></p>
+            </div>
+            {% endif %}
+            
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<div id="backa">
+    <div><a href="{% url 'slug_list' %}"><p id="back">Back</p></a></div>
+</div>
+{% endblock %}

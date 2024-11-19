@@ -1,0 +1,279 @@
+@font-face {
+    font-family: 'slugterraregular';
+    src: url('slugterra-webfont.woff2') format('woff2'),
+         url('slugterra-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.titre-principal {
+    font-family:'slugterraregular',sans-serif; 
+}
+
+h1 a, h2 a, h3 a{
+    color: rgb(0, 0, 0);
+    font-family: 'slugterraregular', sans-serif;
+}
+.white{color:rgb(255,255,255);}
+body{
+    background-color: white ;
+}
+.slug{
+    margin-left: 20px;
+    margin-right: auto;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    border: solid rgb(255, 255, 255);
+    background-color: rgb(240, 235, 241);
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+#dispo{
+    background-color: rgb(132, 211, 132);
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#pasdispo{
+    background-color:rgb(228, 92, 92);
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#nomslugs{
+    font-size: 20px;
+    font-family: 'slugterraregular', sans-serif;
+    color:rgb(0, 0, 0);
+}
+
+#nomslugs2{
+    font-size: 14px;
+    color:rgb(0, 0, 0);
+}
+
+
+
+#nom{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.test{
+    justify-content: start;
+    flex-direction: row;
+}
+
+#tableau{
+    margin-left: 25px;
+    margin-right: 25px;
+
+}
+
+  
+#content1 {
+    width: auto;
+    height: auto;
+    display: flex;
+    margin-top: 30px;
+}
+  
+#content2 {
+    width: auto;
+    height: auto;
+    display: flex;
+    margin-left: 150px;
+}
+#content3 {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+    margin-bottom: 100px;
+}
+
+#info{
+    color: rgb(255, 153, 0);
+}
+
+#dispo{
+    color: rgb(201, 127, 16);
+}
+
+#change{
+    font-size: 20px;
+    color : rgb(255,255,255);
+}
+
+.box{
+    width: auto;
+        display: inline-block;
+        padding: 20px;
+        text-align: left;
+        color: #000000;
+        font-family: arial, sans-serif;
+}
+
+.retour{
+    float: left;
+    margin-top: 20px;
+
+}
+
+#buttonretour{
+    background-color: transparent ;
+    border: transparent;
+}
+
+.page-header {
+    background-color: rgb(255, 153, 0);
+    margin-top: 0;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+#back{
+    font-size: 30px;
+    width: 100px;
+    color: #ff1100;
+    display: flex;
+}
+
+
+.content {
+    margin-left: auto;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'slugterraregular',sans-serif;
+    color:rgb(255, 153, 0);
+}
+
+.date {
+    color: #828282;
+}
+
+.save {
+    float: right;
+}
+
+.slug-form textarea, .slug-form input {
+    width: 100%;
+}
+
+
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.slug {
+    margin-bottom: 70px;
+    
+}
+
+.occupant{
+    margin-bottom: 3px;
+}
+
+.slug h2 a, .slug h2 a:visited {
+    color: #000000;
+}
+
+.photodetail{
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+#occuperpar{
+    background-color: lightgrey ;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-radius: 4px;
+}
+
+
+.equip{
+    margin-left: 20px;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    width: 210px;
+    border: solid rgb(233, 206, 228);
+    background-color: rgb(240, 235, 241);
+    border-radius: 5px;
+    text-align: center;
+    position: center;
+
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; 
+}
+
+.full-page-image {
+    width: 100vw; 
+    height: 100vh;
+    object-fit:contain ; 
+    object-position: center; 
+    display: block;
+}
+
+.my-ul-class {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color : rgb(255, 166, 1);
+} 
+
+.texte-message {color:#ff1100;
+font-family: 'slugterraregular';
+font-size: x-large;}
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .grid-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+
+.titre_slug{
+    color:#000000;
+}

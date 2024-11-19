@@ -1,0 +1,25 @@
+{% extends 'slugmonsters/base.html' %}
+
+{% load static %}
+{% block content %}
+<h1>SLUGS: </h1>
+<div id="content1">
+    {% for slug in slugs %}
+        <div id="grid-container">
+        <div class="slug" id="slug">
+            <div class="photo">
+                <img src={{slug.photo}} width="150" height="150">
+            </div>
+        <p id="nom"><a href="{% url 'slug_detail' id_slug=slug.id_slug %}" id="nomslugs">{{ slug.id_slug}}</a></p>
+        
+        <p> espece : {{ slug.espece }} </p>
+        <p> Type : {{ slug.type }} </p>
+        <p> Etat : {{ slug.etat }} </p>
+        <p> Lieu : {{ slug.lieu }} </p>
+        </div>
+        </div>
+    {% endfor %}
+</div>
+
+        
+{% endblock %}

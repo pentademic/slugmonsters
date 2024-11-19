@@ -1,0 +1,28 @@
+{% extends 'slugmonsters/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Equipement :</h1>
+<div class="equip">
+    <div>
+        <h2 class='titre_slug'>{{ equipement.id_equip }}</h2>
+        <div class="photodetail">
+            <img src={{equipement.photo}} width="200" height="200">
+        </div>
+        {% if equipement.disponibilite == 'libre' %}
+        <p> Disponibilité : <span id="dispo">{{ equipement.disponibilite }}</span></p>
+        {% else %}
+        <p> Disponibilité : <span id="pasdispo">{{ equipement.disponibilite }}</span></p>
+        <div class="occupant"> Slug : <span id="occuperpar"><a href="{% url 'slug_detail' id_slug=slug.id_slug %}" id="nomslugs2">{{ slug }}</a></span> </div>
+        {% endif %}
+    
+    </div>
+</div> 
+
+
+ <br>
+<div id="backa">
+    <div><a href="{% url 'slug_list' %}"><p id="back">Back</p></a></div>
+</div>
+ 
+{% endblock %}
